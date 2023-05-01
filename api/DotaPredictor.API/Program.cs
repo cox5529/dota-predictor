@@ -30,7 +30,7 @@ var predictor = app.Services.GetRequiredService<IPredictorService>();
 predictor.LoadModel("model.zip");
 
 app.UseRouting();
-app.UseCors();
+app.UseCors(o => o.AllowAnyOrigin().AllowAnyMethod().Build());
 app.MapControllers();
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotaPredictor.API v1"));
