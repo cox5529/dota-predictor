@@ -14,13 +14,18 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DotaPredictor.DataBuilder\DotaPredictor.DataBuilder.csproj" />
+      <ProjectReference Include="..\DotaPredictor.Application\DotaPredictor.Application.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <None Update="data.csv">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
     </ItemGroup>
 
 </Project>

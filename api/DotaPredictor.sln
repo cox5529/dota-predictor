@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotaPredictor.DataBuilder", "DotaPredictor.DataBuilder\DotaPredictor.DataBuilder.csproj", "{CF00E946-CC59-4134-9A8C-7DEEE9AD353B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotaPredictor.Application", "DotaPredictor.Application\DotaPredictor.Application.csproj", "{CF00E946-CC59-4134-9A8C-7DEEE9AD353B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotaPredictor.API", "DotaPredictor.API\DotaPredictor.API.csproj", "{10316845-001A-40CC-837D-752B80F0D67C}"
 EndProject

@@ -1,11 +1,27 @@
-using DotaPredictor.API;
+using DotaPredictor.API.Filters;
 using DotaPredictor.DataBuilder.Extensions;
 using DotaPredictor.DataBuilder.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using DotaPredictor.DataBuilder.Settings;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDotaDataPredictor();
+builder.Services.AddControllers(options => options.Filters.Add<ApiExceptionFilter>());
+builder.Services.Configure<HeroSettings>(o => builder.Configuration.GetSection("Hero").Bind(o));
+
+builder.Services.AddSwaggerGen(
+    options =>
+    {
+        options.SwaggerDoc(
+            "v1",
+            new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "DotaPredictor.API",
+                Description = "Dota Predictor API"
+            });
+    });
 
 var app = builder.Build();
 var predictor = app.Services.GetRequiredService<IPredictorService>();
@@ -13,8 +29,10 @@ var predictor = app.Services.GetRequiredService<IPredictorService>();
 //predictor.SaveModel("model.zip");
 predictor.LoadModel("model.zip");
 
-app.MapPost(
-    "/",
-    async ([FromBody] PredictionRequest request) => await predictor.PredictHeroSuccesses(request.Allies, request.Enemies));
+app.UseRouting();
+app.UseCors();
+app.MapControllers();
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotaPredictor.API v1"));
 
 app.Run();
